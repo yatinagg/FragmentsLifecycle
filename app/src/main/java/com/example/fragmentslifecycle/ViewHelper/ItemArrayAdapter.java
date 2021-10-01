@@ -2,7 +2,6 @@ package com.example.fragmentslifecycle.ViewHelper;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +46,7 @@ public class ItemArrayAdapter extends RecyclerView.Adapter<ItemArrayAdapter.View
     // load data in each row element
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int listPosition) {
-        holder.bind(itemList.get(listPosition).getName(),listPosition);
+        holder.bind(itemList.get(listPosition).getName());
     }
 
 
@@ -63,9 +62,7 @@ public class ItemArrayAdapter extends RecyclerView.Adapter<ItemArrayAdapter.View
         }
         @Override
         public void onClick(View view) {
-            int adapPosition=getAdapterPosition();
             int layoutPosition = getLayoutPosition();
-            Log.d("onclick", "onClick " + adapPosition +"lay : "+ layoutPosition + " " + item.getText());
             Intent intent = null;
             if(layoutPosition==0)
                 intent = new Intent(context, LifecycleActivity.class);
@@ -76,7 +73,7 @@ public class ItemArrayAdapter extends RecyclerView.Adapter<ItemArrayAdapter.View
             context.startActivity(intent);
         }
 
-        private void bind(String name, int position){
+        private void bind(String name){
             item.setText(name);
         }
     }
