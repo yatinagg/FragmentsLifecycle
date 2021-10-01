@@ -1,0 +1,75 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextName"
+            style="@style/TextDisplayGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:ems="15"
+            android:hint="@string/enter_name"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textAlignment="center" />
+
+
+        <EditText
+            android:id="@+id/editTextClass"
+            style="@style/TextDisplayGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:ems="15"
+            android:hint="@string/enter_class"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/editTextAge"
+            style="@style/TextDisplayGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:ems="15"
+            android:hint="@string/enter_age"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/editTextHeight"
+            style="@style/TextDisplayGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:ems="15"
+            android:hint="@string/enter_height"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/buttonIntent"
+            style="@style/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:backgroundTint="@color/purple_500"
+            android:ems="15"
+            android:text="@string/submit" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>

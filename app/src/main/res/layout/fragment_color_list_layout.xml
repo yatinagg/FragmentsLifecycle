@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/buttonRed"
+        style="@style/Button"
+        android:layout_marginTop="150dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/Red"
+        android:text="@string/red" />
+
+    <Button
+        android:id="@+id/buttonBlue"
+        style="@style/Button"
+        android:layout_weight="1"
+        android:backgroundTint="@color/Blue"
+        android:text="@string/blue" />
+
+    <Button
+        android:id="@+id/buttonGreen"
+        style="@style/Button"
+        android:layout_weight="1"
+        android:backgroundTint="@color/Green"
+        android:text="@string/green" />
+
+    <Button
+        android:id="@+id/buttonYellow"
+        style="@style/Button"
+        android:layout_weight="1"
+        android:backgroundTint="@color/Yellow"
+        android:text="@string/yellow" />
+
+    <Button
+        android:id="@+id/buttonOrange"
+        style="@style/Button"
+        android:layout_marginBottom="150dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/Orange"
+        android:text="@string/orange" />
+</androidx.appcompat.widget.LinearLayoutCompat>
