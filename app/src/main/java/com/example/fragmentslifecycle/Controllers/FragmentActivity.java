@@ -22,7 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.fragmentslifecycle.R;
 
-public class FragmentActivity extends AppCompatActivity implements FragmentColorList.FragmentColorListOnClicked, FragmentColorView.FragmentColorViewOnClicked {
+public class FragmentActivity extends AppCompatActivity implements FragmentColorList.FragmentColorListOnClicked {
 
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
@@ -30,6 +30,7 @@ public class FragmentActivity extends AppCompatActivity implements FragmentColor
     private String TAG = "check1";
     private boolean colorScreen = false;
     private TextView textView;
+    private int subscreens = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,22 +50,14 @@ public class FragmentActivity extends AppCompatActivity implements FragmentColor
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         // Replace whatever is in the fragment_container view with this fragment
-        changeFragment(true,false,FragmentColorList.class,false);
+        changeFragment(true, false, FragmentColorList.class, false);
     }
 
     @Override
     public void buttonClicked(String color) {
         this.color = color;
-        int orientation = this.getResources().getConfiguration().orientation;
-
         fragmentTransaction = fragmentManager.beginTransaction();
-        changeFragment(false,true, FragmentColorView.class,true);
-    }
-
-    @Override
-    public void sendView(View view) {
-        int clr = Color.parseColor(color);
-        view.setBackgroundColor(clr);
+        changeFragment(false, true, FragmentColorView.class, true);
     }
 
     @Override
@@ -74,41 +67,36 @@ public class FragmentActivity extends AppCompatActivity implements FragmentColor
         Log.d(TAG, "orientationChanged");
 
         fragmentTransaction = fragmentManager.beginTransaction();
-        changeFragment(true,false, FragmentColorList.class,true);
+        changeFragment(true, false, FragmentColorList.class, true);
     }
 
-    @Override
-    public void onBackPressed() {
+    private void changeFragment(boolean activityChange, boolean changeColor, Class className, boolean colorScr) {
         int orientation = this.getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_PORTRAIT && colorScreen) {
-            Log.d(TAG, "landscape");
-            fragmentTransaction = fragmentManager.beginTransaction();
-            setContentView(layout.activity_fragment);
-            fragmentTransaction.replace(layout_fragment_potrait, FragmentColorList.class, null);
-            fragmentTransaction.commit();
-            colorScreen = false;
-        }
-        else{
-            super.onBackPressed();
-        }
-    }
-
-    private void changeFragment(boolean activityChange, boolean changeColor, Class className, boolean colorScr){
-        int orientation = this.getResources().getConfiguration().orientation;
+        Bundle arguments = new Bundle();
+        arguments.putString("color",color);
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            if(activityChange)
+            if (activityChange)
                 setContentView(layout.activity_fragment);
             colorScreen = colorScr;
-            fragmentTransaction.replace(layout_fragment_potrait, className, null);
+            FragmentColorView fragmentColorView = new FragmentColorView();
+            fragmentColorView.setArguments(arguments);
+            fragmentTransaction.replace(layout_fragment_potrait, className, arguments);
+            while(subscreens > 0){
+                fragmentManager.popBackStack();
+                subscreens--;
+            }
+            fragmentTransaction.addToBackStack(null);
+            subscreens++;
         } else {
-            if(activityChange)
+            if (activityChange) {
                 setContentView(layout.activity_fragment_landscape);
-            if(changeColor){
+            }
+            if (changeColor) {
                 Fragment fragment = fragmentManager.findFragmentById(id.layout_fr2);
                 fragment.getView().setBackgroundColor(Color.parseColor(color));
             }
             fragmentTransaction.replace(R.id.layout_fr1, FragmentColorList.class, null);
-            fragmentTransaction.replace(R.id.layout_fr2, FragmentColorView.class, null);
+            fragmentTransaction.replace(R.id.layout_fr2, FragmentColorView.class, arguments);
         }
         fragmentTransaction.commit();
     }

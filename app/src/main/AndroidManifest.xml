@@ -11,14 +11,15 @@
         android:theme="@style/Theme.FragmentsLifecycle">
         <activity
             android:name=".Controllers.MainActivity"
+            android:launchMode="singleTask"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Controllers.LifecycleActivity"/>
+        <activity android:name=".Controllers.LifecycleActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".Controllers.FragmentActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
         <activity android:name=".Controllers.IntentActivity"/>

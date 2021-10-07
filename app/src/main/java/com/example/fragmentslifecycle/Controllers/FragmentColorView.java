@@ -1,6 +1,7 @@
 package com.example.fragmentslifecycle.Controllers;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,33 +16,20 @@ import com.example.fragmentslifecycle.R;
 
 public class FragmentColorView extends Fragment {
 
-
-    private FragmentColorViewOnClicked mCallback;
-
-    public interface FragmentColorViewOnClicked {
-        void sendView(View view);
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
-        try {
-            mCallback = (FragmentColorViewOnClicked) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement TextClicked");
-        }
     }
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_color_view_layout, container, false);
-        View view2 = view.findViewById(R.id.viewFragment2);
-        mCallback.sendView(view2);
+        Bundle arguments = getArguments();
+        String color = arguments.getString("color");
+        System.out.println("col : " + color);
+        view.setBackgroundColor(Color.parseColor(color));
+
         return view;
     }
 

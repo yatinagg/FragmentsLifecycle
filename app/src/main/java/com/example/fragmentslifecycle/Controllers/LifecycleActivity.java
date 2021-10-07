@@ -23,7 +23,7 @@ public class LifecycleActivity extends AppCompatActivity {
     private TextView textView;
     private TextView textView1;
     private Button buttonDialog;
-    private final String TAG = "LifecycleActivity";
+    private final String TAG = "test_2";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +115,7 @@ public class LifecycleActivity extends AppCompatActivity {
         Log.d(TAG, "OnDestroy");
     }
 
-    AlertDialog.Builder createAlertDialog(String message, String title, String pos, String neg){
+    private AlertDialog.Builder createAlertDialog(String message, String title, String pos, String neg){
         AlertDialog.Builder builder = new AlertDialog.Builder(LifecycleActivity.this, R.style.MyDialogTheme);
         builder.setMessage(message);
         builder.setTitle(title);
